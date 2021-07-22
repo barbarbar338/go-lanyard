@@ -9,12 +9,11 @@ type LanyardResponse struct {
 }
 
 type LanyardWSResponse struct {
-	Op int `json:"op"`
-	Seq int `json:"seq"`
-	T string `json:"t"`
-	D *LanyardData `json:"d"`
+	Op  int          `json:"op"`
+	Seq int          `json:"seq"`
+	T   string       `json:"t"`
+	D   *LanyardData `json:"d"`
 }
-
 
 type LanyardData struct {
 	Spotify                Spotify     `json:"spotify"`

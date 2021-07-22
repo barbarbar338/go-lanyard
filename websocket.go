@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	WS_URL = "wss://api.lanyard.rest/socket"
+	WS_URL      = "wss://api.lanyard.rest/socket"
 	PING_PERIOD = 30 * time.Second
 )
 
@@ -36,23 +36,23 @@ func (client WSClient) ping() {
 }
 
 func CreateWS(userId string, presenceUpdate func(data *LanyardData)) WSClient {
-	client := WSClient {
+	client := WSClient{
 		socket: gowebsocket.New(WS_URL),
 	}
-	
+
 	client.socket.OnConnected = func(socket gowebsocket.Socket) {
 		client.socket.SendText("{\"op\":2,\"d\":{\"subscribe_to_id\":\"" + userId + "\"}}")
 		go client.ping()
-	};
-	
+	}
+
 	client.socket.OnConnectError = func(err error, socket gowebsocket.Socket) {
 		log.Println("An error occured while connecting to Lanyard websocket server", err)
 		client.Destroy()
-	};
-	
+	}
+
 	client.socket.OnTextMessage = func(message string, socket gowebsocket.Socket) {
 		if strings.Contains(message, "heartbeat_interval") {
-			return 
+			return
 		}
 
 		var data LanyardWSResponse
@@ -63,8 +63,8 @@ func CreateWS(userId string, presenceUpdate func(data *LanyardData)) WSClient {
 		}
 
 		presenceUpdate(data.D)
-	};
-	
+	}
+
 	client.socket.Connect()
 
 	return client

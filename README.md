@@ -27,10 +27,16 @@ import (
 )
 
 func main() {
-	//                  User ID here 👇
-	res := lanyard.FetchUser("331846231514939392")
+	//                        User ID here 👇
+	res, err := lanyard.FetchUser("331846231514939392")
 
-	// handle presence data here
+	// Handle Error
+	if err != nil {
+		// ...
+		panic(err)
+	}
+
+	// Handle Presence Data Here
 	fmt.Println(res.Data.DiscordStatus)
 }
 ```
