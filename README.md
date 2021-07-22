@@ -22,11 +22,13 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/barbarbar338/go-lanyard"
 )
 
 func main() {
 	//                  User ID here 👇
-	res := FetchUser("331846231514939392")
+	res := lanyard.FetchUser("331846231514939392")
 
 	// handle presence data here
 	fmt.Println(res.Data.DiscordStatus)
@@ -44,14 +46,14 @@ import (
 	"os/signal"
 	"syscall"
 
-    "github.com/barbarbar338/go-lanyard"
+	"github.com/barbarbar338/go-lanyard"
 )
 
 func main() {
-    //                       User ID here 👇
-	ws := lanyard.CreateWS("331846231514939392", func(data *LanyardData) {
+	//                       User ID here 👇
+	ws := lanyard.CreateWS("331846231514939392", func(data *lanyard.LanyardData) {
 
-        // handle presence data here
+		// handle presence data here
 		fmt.Println(data.DiscordStatus)
 	})
 
@@ -66,7 +68,7 @@ func main() {
 
 	fmt.Println("Closing client.")
 
-    // destroy ws before exit
+	// destroy ws before exit
 	ws.Destroy()
 }
 ```
