@@ -13,8 +13,6 @@ const (
 
 func FetchUser(userId string) (LanyardResponse, error) {
 	resp, err := http.Get(API_URL + userId)
-
-	// Check An Error for Send HTTP Request
 	if err != nil {
 		return LanyardResponse{
 			false,
@@ -24,8 +22,6 @@ func FetchUser(userId string) (LanyardResponse, error) {
 	}
 
 	body, err := io.ReadAll(resp.Body)
-
-	// Check An Error for Read Body
 	if err != nil {
 		return LanyardResponse{
 			false,
@@ -35,10 +31,7 @@ func FetchUser(userId string) (LanyardResponse, error) {
 	}
 
 	var data LanyardResponse
-
 	err = json.Unmarshal(body, &data)
-
-	// Check Lanyard sent An Error
 	if !(resp.StatusCode >= 200 && resp.StatusCode < 300) {
 		return LanyardResponse{
 			false,
@@ -46,8 +39,6 @@ func FetchUser(userId string) (LanyardResponse, error) {
 			&LanyardError{},
 		}, errors.New(data.Error.Message)
 	}
-
-	// Check An Error for JSON De-Convertion.
 	if err != nil {
 		return LanyardResponse{
 			false,
@@ -56,6 +47,5 @@ func FetchUser(userId string) (LanyardResponse, error) {
 		}, err
 	}
 
-	// Return Data with No Error
 	return data, nil
 }
