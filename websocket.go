@@ -70,7 +70,7 @@ func ListenUser(userId string, presenceUpdate func(data *LanyardData)) WSClient 
 	return client
 }
 
-func ListenMultipleUser(userIds []string, presenceUpdate func(data []*LanyardData)) WSClient {
+func ListenMultipleUsers(userIds []string, presenceUpdate func(data []*LanyardData)) WSClient {
 	client := WSClient{
 		socket: gowebsocket.New(WS_URL),
 	}
