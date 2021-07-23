@@ -21,27 +21,27 @@ func singlePresenceUpdate(client WSClient, message string) (*LanyardData, error)
 
 func multiplePresenceUpdate(client WSClient, message string) ([]*LanyardData, error) {
 	var data map[string]json.RawMessage
-		err := json.Unmarshal([]byte(message), &data)
+	err := json.Unmarshal([]byte(message), &data)
+	if err != nil {
+		return []*LanyardData{}, err
+	}
+
+	var userMap map[string]json.RawMessage
+	err = json.Unmarshal([]byte(data["d"]), &userMap)
+	if err != nil {
+		return []*LanyardData{}, err
+	}
+
+	var userDatas []*LanyardData
+	for _, item := range userMap {
+		var userData *LanyardData
+		err := json.Unmarshal(item, &userData)
 		if err != nil {
 			return []*LanyardData{}, err
 		}
 
-		var userMap map[string]json.RawMessage
-		err = json.Unmarshal([]byte(data["d"]), &userMap)
-		if err != nil {
-			return []*LanyardData{}, err
-		}
-
-		var userDatas []*LanyardData
-		for _, item := range userMap {
-			var userData *LanyardData
-			err := json.Unmarshal(item, &userData)
-			if err != nil {
-				return []*LanyardData{}, err
-			}
-
-			userDatas = append(userDatas, userData)
-		}
+		userDatas = append(userDatas, userData)
+	}
 
 	return userDatas, nil
 }
