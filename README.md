@@ -10,8 +10,8 @@ Use Lanyard API easily in your Go app!
 
 # 📦 Installation
 
-- Initialize your project (`go mod init example.com/example`)
-- Add package (`go get github.com/barbarbar338/go-lanyard`)
+-   Initialize your project (`go mod init example.com/example`)
+-   Add package (`go get github.com/barbarbar338/go-lanyard`)
 
 # 🤓 Usage
 
@@ -27,16 +27,16 @@ import (
 )
 
 func main() {
-	//                        User ID here 👇
+	//                              User ID here 👇
 	res, err := lanyard.FetchUser("331846231514939392")
 
-	// Handle Error
+	// Handle error
 	if err != nil {
 		// ...
 		panic(err)
 	}
 
-	// Handle Presence Data Here
+	// Handle presence data here
 	fmt.Println(res.Data.DiscordStatus)
 }
 ```
@@ -56,9 +56,9 @@ import (
 )
 
 func main() {
-	//                     User ID here 👇
+	//                          User ID here 👇
 	ws := lanyard.ListenUser("331846231514939392", func(data *lanyard.LanyardData) {
-		// Handle Presence Data Here
+		// Handle presence data here
 		fmt.Println(data.DiscordStatus)
 	})
 
@@ -73,12 +73,12 @@ func main() {
 
 	fmt.Println("Closing client.")
 
-	// Destroy WS Before Exit
+	// Destroy WS before exit
 	ws.Destroy()
 }
 ```
 
-Using websocket for watching more user:
+Using websocket for watching multiple users:
 
 ```golang
 package main
@@ -94,10 +94,10 @@ import (
 
 func main() {
 	//                                              User IDs here 👇
-	ws := lanyard.ListenMultipleUser([]string{"866849747603816468", "331846231514939392"}, func(data []*lanyard.LanyardData) {
-		// Handle User Datas Here
+	ws := lanyard.ListenMultipleUsers([]string{"866849747603816468", "331846231514939392"}, func(data []*lanyard.LanyardData) {
+		// Loop through users
 		for _, user := range data {
-			fmt.Println(user)
+			fmt.Println(user.DiscordStatus)
 		}
 	})
 
@@ -112,7 +112,7 @@ func main() {
 
 	fmt.Println("Closing client.")
 
-	// Destroy WS Before Exit
+	// Destroy WS Bbfore exit
 	ws.Destroy()
 }
 
@@ -140,10 +140,10 @@ Give a ⭐️ if this project helped you!
 
 # 📞 Contact
 
-- Mail: demirci.baris38@gmail.com
-- Discord: https://discord.gg/BjEJFwh
-- Instagram: https://www.instagram.com/ben_baris.d/
+-   Mail: demirci.baris38@gmail.com
+-   Discord: https://discord.gg/BjEJFwh
+-   Instagram: https://www.instagram.com/ben_baris.d/
 
 # ✨ Special Thanks
 
-- [Phineas](https://github.com/Phineas) - Creator of [Lanyard API](https://github.com/Phineas/lanyard)
+-   [Phineas](https://github.com/Phineas) - Creator of [Lanyard API](https://github.com/Phineas/lanyard)
