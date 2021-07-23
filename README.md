@@ -93,12 +93,9 @@ import (
 )
 
 func main() {
-	//                                              User IDs here 👇
-	ws := lanyard.ListenMultipleUsers([]string{"866849747603816468", "331846231514939392"}, func(data []*lanyard.LanyardData) {
-		// Loop through users
-		for _, user := range data {
-			fmt.Println(user.DiscordStatus)
-		}
+	//                                                     User IDs here 👇
+	ws := lanyard.ListenMultipleUsers([]string{"866849747603816468", "331846231514939392"}, func(data *lanyard.LanyardData) {
+		fmt.Println(data.DiscordStatus)
 	})
 
 	sc := make(chan os.Signal, 1)
@@ -112,7 +109,7 @@ func main() {
 
 	fmt.Println("Closing client.")
 
-	// Destroy WS Bbfore exit
+	// Destroy WS before exit
 	ws.Destroy()
 }
 
