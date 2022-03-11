@@ -16,13 +16,14 @@ type LanyardWSResponse struct {
 }
 
 type LanyardData struct {
-	Spotify                Spotify     `json:"spotify"`
-	ListeningToSpotify     bool        `json:"listening_to_spotify"`
-	DiscordUser            DiscordUser `json:"discord_user"`
-	DiscordStatus          string      `json:"discord_status"`
-	Activities             []Activity  `json:"activities"`
-	ActiveOnDiscordMobile  bool        `json:"active_on_discord_mobile"`
-	ActiveOnDiscordDesktop bool        `json:"active_on_discord_desktop"`
+	Spotify                Spotify            `json:"spotify"`
+	ListeningToSpotify     bool               `json:"listening_to_spotify"`
+	DiscordUser            DiscordUser        `json:"discord_user"`
+	DiscordStatus          string             `json:"discord_status"`
+	Kv                     map[string]string  `json:"kv"`
+	Activities             []Activity         `json:"activities"`
+	ActiveOnDiscordMobile  bool               `json:"active_on_discord_mobile"`
+	ActiveOnDiscordDesktop bool               `json:"active_on_discord_desktop"`
 }
 
 type LanyardError struct {
