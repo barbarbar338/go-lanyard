@@ -28,7 +28,7 @@ import (
 
 func main() {
 	//                              User ID here 👇
-	res, err := lanyard.FetchUser("331846231514939392")
+	res, err := lanyard.FetchUser("952574663916154960")
 
 	// Handle error
 	if err != nil {
@@ -57,7 +57,7 @@ import (
 
 func main() {
 	//                          User ID here 👇
-	ws := lanyard.ListenUser("331846231514939392", func(data *lanyard.LanyardData) {
+	ws := lanyard.ListenUser("952574663916154960", func(data *lanyard.LanyardData) {
 		// Handle presence data here
 		fmt.Println(data.DiscordStatus)
 	})
@@ -94,7 +94,7 @@ import (
 
 func main() {
 	//                                                     User IDs here 👇
-	ws := lanyard.ListenMultipleUsers([]string{"866849747603816468", "331846231514939392"}, func(data *lanyard.LanyardData) {
+	ws := lanyard.ListenMultipleUsers([]string{"866849747603816468", "952574663916154960"}, func(data *lanyard.LanyardData) {
 		fmt.Println(data.DiscordStatus)
 	})
 
